@@ -73,51 +73,20 @@
     <div class="customer-login my-5">
       <div class="container">
           <div class="row">
-              <!--login area start-->
-              <div class="col-lg-6 col-md-6">
-                  <div class="account_form" data-aos="fade-up" data-aos-delay="0">
-                      <h3>login</h3>
-                      <form action="{{url('login')}}" method="POST">
-                        @csrf
-                          <div class="default-form-box">
-                              <label>Username or email <span>*</span></label>
-                              <input type="text" name="email">
-                          </div>
-                          <div class="default-form-box">
-                              <label>Passwords <span>*</span></label>
-                              <input type="password"name="password">
-                          </div>
-                          <div class="login_submit">
-                              <button class="btn btn-md btn-black-default-hover mb-4" type="submit">login</button>
-                              <label class="checkbox-default mb-4" for="offer">
-                                  <input type="checkbox" id="offer">
-                                  <span>Remember me</span>
-                              </label>
-                              <a href="{{route('password.request')}}">Lost your password?</a>
-
-                          </div>
-                      </form>
-                  </div>
-              </div>
-              <!--login area start-->
+            
+              
 
               <!--register area start-->
               <div class="col-lg-6 col-md-6">
                   <div class="account_form register" data-aos="fade-up" data-aos-delay="200">
-                      <h3>Register</h3>
+                      <h3>Update your password</h3>
                       {{-- {{-- <x-validation-errors/> --}}
-                      <form role="form text-left" action="{{ route('register') }}" method="POST">
+                      <form role="form text-left" action="{{ route('password.update') }}" method="POST">
                         @csrf
+                  
                     <div class="mb-3">
-                      <input type="text" name="name" class="form-control @error('name') is-invlaid @enderror" placeholder="Name" aria-label="Name">
-                      @error('name')
-                      <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                   @enderror
-                    </div>
-                    <div class="mb-3">
-                      <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email" aria-label="Email">
+                        <input type="hidden"value="{{$request['token']}}"name="token">
+                      <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email" aria-label="Email" value="{{$request->email}}">
                       @error('email')
                       <span class="invalid-feedback" role="alert">
                         <strong>{{$message}}</strong>
@@ -136,9 +105,9 @@
                       <input type="password" name="password_confirmation" class="form-control @error('password') is-invalid @enderror" placeholder="Confirm Password" aria-label="Password"id="password">
                     </div>
                     <div class="text-center">
-                      <button type="submit" class="btn bg-gradient-dark w-100 my-4 mb-2">Sign up</button>
+                      <button type="submit" class="btn bg-gradient-dark w-100 my-4 mb-2">Update Password</button>
                     </div>
-                    <p class="text-sm mt-3 mb-0">Already have an account? <a href="{{route('login')}}" class="text-dark font-weight-bolder">Sign in</a></p>
+                    
                   </form> 
                  
                     </form>

@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\product_add;
+use App\Http\Controllers\slider_img;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('user.home');
-});
+Route::get('/',[slider_img::class,'show_slider']);
+Route::get('home',[slider_img::class,'show_slider'])->middleware('auth','verified');
+
+Route::view('proudct_add','product.addProduct')->name('addproduct');
+Route::post('add_the_product',[product_add::class,'addProduct']);
