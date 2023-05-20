@@ -18,11 +18,11 @@
                             <nav>
                                 <ul>
                                     <li class="has-dropdown">
-                                        <a class="active main-menu-link" href="index.html">Home <i
+                                        <a class="active main-menu-link" href="{{url('home')}}">Home <i
                                                 class="fa fa-angle-down"></i></a>
                                         <!-- Sub Menu -->
                                         <ul class="sub-menu">
-                                            <li><a href="index.html">Home 1</a></li>
+                                            <li><a href="{{url('home')}}">Home 1</a></li>
                                             <li><a href="index-2.html">Home 2</a></li>
                                             <li><a href="index-3.html">Home 3</a></li>
                                             <li><a href="index-4.html">Home 4</a></li>
@@ -129,6 +129,7 @@
                                         <a href="#">Pages <i class="fa fa-angle-down"></i></a>
                                         <!-- Sub Menu -->
                                         <ul class="sub-menu">
+                                            <li><a href="{{route('addproduct')}}">Add Product</a></li>
                                             <li><a href="faq.html">Frequently Questions</a></li>
                                             <li><a href="privacy-policy.html">Privacy Policy</a></li>
                                             <li><a href="404.html">404 Page</a></li>
@@ -141,17 +142,15 @@
                                         <a href="contact-us.html">Contact Us</a>
                                     </li>
                                     @guest
+                                   
                                     <li>
-                                        <a href="register">Register</a>
-                                    </li>
-                                    <li>
-                                        <a href="contact-us.html">Login</a>
+                                        <a href="{{url('register')}}">Login</a>
                                     </li>
                                     
                                     @endguest
                                     @auth
                                     <li> 
-                                        <a href="contact-us.html">Logout</a>
+                                        <a href="{{url('logout')}}"onclick="event.preventDefault();document.getElementById('the_form').submit();">Logout</a>
                                     </li>
                                     @endauth
                                    
@@ -243,3 +242,7 @@
         </div>
     </div>
 </div>
+
+<form id="the_form" action="{{route('logout')}}" method="post">
+@csrf
+</form>

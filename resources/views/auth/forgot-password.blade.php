@@ -70,85 +70,37 @@
     <div class="offcanvas-overlay"></div>
 
     <!-- Start Hero Slider Section-->
-    <div class="customer-login my-5">
-      <div class="container">
-          <div class="row">
-              <!--login area start-->
-              <div class="col-lg-6 col-md-6">
-                  <div class="account_form" data-aos="fade-up" data-aos-delay="0">
-                      <h3>login</h3>
-                      <form action="{{url('login')}}" method="POST">
+    <div class="container my-5">
+        @if(session('status'))
+        <div class="alert alert-success">
+            {{session('status')}}
+        </div>
+        @endif
+        <div class="row">
+            <div class="col-xl-8 col-md-8">
+                <div class="forget_passowrd">
+                    <form action="{{route('password.email')}}" method="POST">
                         @csrf
                           <div class="default-form-box">
                               <label>Username or email <span>*</span></label>
-                              <input type="text" name="email">
+                              <input type="text" name="email"class="@error('email') not-valid @enderror" >
+                              @error('email')
+                              <div>
+                                 {{$message}}
+                              </div>
+                              @enderror 
                           </div>
-                          <div class="default-form-box">
-                              <label>Passwords <span>*</span></label>
-                              <input type="password"name="password">
-                          </div>
-                          <div class="login_submit">
-                              <button class="btn btn-md btn-black-default-hover mb-4" type="submit">login</button>
-                              <label class="checkbox-default mb-4" for="offer">
-                                  <input type="checkbox" id="offer">
-                                  <span>Remember me</span>
-                              </label>
-                              <a href="{{route('password.request')}}">Lost your password?</a>
-
-                          </div>
+                          <button class="btn btn-md btn-black-default-hover mb-4" type="submit">Forgot password</button>
+                          
+                        
                       </form>
-                  </div>
-              </div>
-              <!--login area start-->
+                 </div>
+            </div>
+        </div>
+       
+    </div>
 
-              <!--register area start-->
-              <div class="col-lg-6 col-md-6">
-                  <div class="account_form register" data-aos="fade-up" data-aos-delay="200">
-                      <h3>Register</h3>
-                      {{-- {{-- <x-validation-errors/> --}}
-                      <form role="form text-left" action="{{ route('register') }}" method="POST">
-                        @csrf
-                    <div class="mb-3">
-                      <input type="text" name="name" class="form-control @error('name') is-invlaid @enderror" placeholder="Name" aria-label="Name">
-                      @error('name')
-                      <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                   @enderror
-                    </div>
-                    <div class="mb-3">
-                      <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email" aria-label="Email">
-                      @error('email')
-                      <span class="invalid-feedback" role="alert">
-                        <strong>{{$message}}</strong>
-                      </span>
-                      @enderror
-                    </div>
-                    <div class="mb-3">
-                      <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password" aria-label="Password" id="password">
-                      @error('password')
-                      <span class="invalid-feedback" role="alert">
-                        <strong>{{$message}}</strong>
-                      </span>
-                      @enderror
-                    </div>
-                    <div class="mb-3">
-                      <input type="password" name="password_confirmation" class="form-control @error('password') is-invalid @enderror" placeholder="Confirm Password" aria-label="Password"id="password">
-                    </div>
-                    <div class="text-center">
-                      <button type="submit" class="btn bg-gradient-dark w-100 my-4 mb-2">Sign up</button>
-                    </div>
-                    <p class="text-sm mt-3 mb-0">Already have an account? <a href="{{route('login')}}" class="text-dark font-weight-bolder">Sign in</a></p>
-                  </form> 
-                 
-                    </form>
-                </div>
-                  </div>
-              </div>
-              <!--register area end-->
-          </div>
-      </div>
-  </div> 
+ 
     <!-- Start Footer Section -->
     @include('user.footer')
     <!-- End Footer Section -->
